@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat :)</title>
+
+  <style>
+    #messages {
+      height: 300px;
+      overflow-y: scroll;
+    }
+  </style>
+</head>
+<body>
+  <h1>Chat :)</h1>
+
+  <div id="messages">
+
+  </div>
+
+  
+
+  <script>
+    // Listen for the form to be submitted
+    document.querySelector('form').addEventListener('submit', function(event) {
+      // Prevent the form from being submitted
+      event.preventDefault();
+
+      // Get the user's name and message
+      var username = document.querySelector('#username').value;
+      var message = document.querySelector('#message').value;
+
+      // Append the message to the messages div
+      var messagesDiv = document.querySelector('#messages');
+      messagesDiv.innerHTML += '<p>' + username + ': ' + message + '</p>';
+
+      // Clear the input fields
+      document.querySelector('#username').value = '';
+      document.querySelector('#message').value = '';
+    });
+  </script>
+</body>
+</html>
+<style>
+    body {
+      background-color: #f0f0f0;
+    }
+    h1 {
+      color: #333;
+    }
+    #messages {
+      background-color: #fff;
+      border: 1px solid #ccc;
+    }
+  </style>
+<form>
+    <label for="username">Enter your name:</label>
+    <input type="text" id="username" name="username">
+    <label for="message">Enter your message:</label>
+    <input type="text" id="message" name="message">
+    <label for="image">Select an image to upload:</label>
+    <input type="file" id="image" name="image">
+    <button type="submit">Send</button>
+  </form>
+  
+  <script>
+    // Listen for the form to be submitted
+    document.querySelector('form').addEventListener('submit', function(event) {
+      // Prevent the form from being submitted
+      event.preventDefault();
+  
+      // Get the user's name, message, and image
+      var username = document.querySelector('#username').value;
+      var message = document.querySelector('#message').value;
+      var image = document.querySelector('#image').files[0];
+  
+      // Append the message and image to the messages div
+      var messagesDiv = document.querySelector('#messages');
+      messagesDiv.innerHTML += '<p>' + username + ': ' + message + '</p>';
+      if (image) {
+        messagesDiv.innerHTML += '<p><img src="' + URL.createObjectURL(image) + '" alt="Uploaded image"></p>';
+      }
+  
+      // Clear the input fields
+      document.querySelector('#username').value = '';
+      document.querySelector('#message').value = '';
+      document.querySelector('#image').value = '';
+    });
+  </script>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    #messages {
+      height: 300px;
+      overflow-y: scroll;
+      padding: 16px;
+      background-color: #f8f8f8;
+      border: 1px solid #ccc;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      margin-top: 16px;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    input {
+      padding: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 16px;
+    }
+    button {
+      padding: 8px 16px;
+      background-color: #1a73e8;
+      color: #fff;
+      border: 0;
+      font-weight: bold;
+    }
+    button:hover {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  
+    
