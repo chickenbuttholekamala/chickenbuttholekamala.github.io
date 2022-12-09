@@ -47,7 +47,10 @@
   <h1>My Chat</h1>
 
   <div id="messages">
-
+    <p>User 1: Hi there!</p>
+    <p>User 2: Hi! How are you?</p>
+    <p>User 1: I'm good, thanks for asking. How about you?</p>
+    <p>User 2: I'm doing well too. Thanks!
 
   <form>
     <label for="username">Enter your name:</label>
@@ -58,3 +61,22 @@
   </form>
 
   <script>
+    // Connect to the web socket server
+    const socket = new WebSocket("wss://my-chat-server.com");
+
+    // When the socket is open, send the user's name and message
+    socket.addEventListener("open", event => {
+      const username = document.getElementById("username").value;
+      const message = document.getElementById("message").value;
+      socket.send(JSON.stringify({ username, message }));
+    });
+
+    // When the server sends a message, display it in the chat window
+    socket.addEventListener("message", event => {
+      const data = JSON.parse(event.data);
+      const messageElement = document.createElement("p");
+      messageElement.innerText = `${data.username}: ${data.message}`;
+      document.getElementById("messages").appendChild(messageElement);
+    });
+  </script>
+</body>
